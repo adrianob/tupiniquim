@@ -70,6 +70,7 @@ gem 'state_machine', require: 'state_machine/core'
 gem 'statesman'
 
 # Decorators
+gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'draper'
 
 # Frontend stuff
