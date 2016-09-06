@@ -33,6 +33,24 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-rails'
+  gem 'rspec-mocks'
+  gem 'rspec-its'
+  gem 'rspec-collection_matchers'
+  gem 'pry'
+  gem 'jasmine-rails'
+end
+
+group :test do
+  gem 'zonebie'
+  gem 'fakeweb'
+  gem 'poltergeist'
+  gem 'launchy'
+  gem 'database_cleaner'
+  gem 'shoulda'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :development do
@@ -46,3 +64,20 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# State machine for attributes on models
+gem 'state_machine', require: 'state_machine/core'
+gem 'statesman'
+
+# Decorators
+gem 'draper'
+
+# Frontend stuff
+gem 'slim-rails'
+
+# Authentication and Authorization
+gem 'devise'
+gem 'pundit'
+
+# HTML manipulation and formatting
+gem 'simple_form'
