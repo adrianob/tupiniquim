@@ -69,10 +69,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'state_machine', require: 'state_machine/core'
 gem 'statesman'
 
-# Decorators
-gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
-gem 'draper'
-
 # Frontend stuff
 gem 'slim-rails'
 
