@@ -1,0 +1,14 @@
+usuário:
+
+Identificação: UC1
+Caso de Uso: Cliente faz um pedido
+Ator: Cliente
+Pré‐Condições: mesa está liberada
+Pós‐Condições: pedido está com estado criado
+Sequência Típica de Eventos:
+Ação do ator
+1. Cliente escolhe os items no tablet, escolhendo a bebida e sobremesa para cada item(opcional)
+2. Após terminar o pedido clica em confirmar para fechar o pedido
+Resposta do sistema
+1. Pedido é criado com o id da mesa do cliente
+2. Pedido aparece para o gerente da cozinha
