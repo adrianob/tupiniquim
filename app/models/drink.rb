@@ -1,3 +1,4 @@
 class Drink < ActiveRecord::Base
-  has_many :client_orders
+  has_many :orders, through: :order_details
+  has_many :order_details
 end

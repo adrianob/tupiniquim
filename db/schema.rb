@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910154806) do
+ActiveRecord::Schema.define(version: 20160910172550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,14 +28,14 @@ ActiveRecord::Schema.define(version: 20160910154806) do
   end
 
   create_table "feedbacks", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "client_id",     null: false
     t.text     "details"
     t.decimal  "ambient_grade"
     t.decimal  "food_grade"
     t.decimal  "service_grade"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
+    t.index ["client_id"], name: "index_feedbacks_on_client_id", using: :btree
   end
 
   create_table "menu_items", force: :cascade do |t|
@@ -59,13 +59,11 @@ ActiveRecord::Schema.define(version: 20160910154806) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "restaurant_table_id", null: false
-    t.integer  "waiter_id",           null: false
+    t.integer  "client_id",  null: false
     t.text     "state"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.index ["restaurant_table_id"], name: "index_orders_on_restaurant_table_id", using: :btree
-    t.index ["waiter_id"], name: "index_orders_on_waiter_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_orders_on_client_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,8 +71,11 @@ ActiveRecord::Schema.define(version: 20160910154806) do
     t.text     "password"
     t.text     "cpf"
     t.string   "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "email",              default: "", null: false
+    t.string   "encrypted_password", default: "", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
 end

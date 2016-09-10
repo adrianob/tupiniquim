@@ -1,11 +1,8 @@
 p#notice = notice
 
 p
-  strong Restaurant table:
-  = @order.restaurant_table
-p
-  strong Waiter:
-  = @order.waiter
+  strong Client:
+  = @order.client.name
 p
   strong State:
   = @order.state

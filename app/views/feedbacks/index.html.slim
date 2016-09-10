@@ -3,6 +3,7 @@ h1 Listing feedbacks
 table
   thead
     tr
+      th Details
       th Ambient grade
       th Food grade
       th Service grade
@@ -13,6 +14,7 @@ table
   tbody
     - @feedbacks.each do |feedback|
       tr
+        td = feedback.details
         td = feedback.ambient_grade
         td = feedback.food_grade
         td = feedback.service_grade

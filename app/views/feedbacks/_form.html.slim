@@ -1,4 +1,4 @@
-= form_for @feedback do |f|
+= simple_form_for @feedback do |f|
   - if @feedback.errors.any?
     #error_explanation
       h2 = "#{pluralize(@feedback.errors.count, "error")} prohibited this feedback from being saved:"
@@ -6,13 +6,13 @@
         - @feedback.errors.full_messages.each do |message|
           li = message
 
+  = f.input :client_id, as: :hidden, input_html: {value: current_user.id}
   .field
-    = f.label :ambient_grade
-    = f.text_field :ambient_grade
+    = f.input :details
   .field
-    = f.label :food_grade
-    = f.text_field :food_grade
+    = f.input :ambient_grade
   .field
-    = f.label :service_grade
-    = f.text_field :service_grade
+    = f.input :food_grade
+  .field
+    = f.input :service_grade
   .actions = f.submit
