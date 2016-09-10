@@ -71,6 +71,8 @@ gem 'statesman'
 
 # Frontend stuff
 gem 'slim-rails'
+gem 'cocoon'
+
 
 # Authentication and Authorization
 gem 'devise'

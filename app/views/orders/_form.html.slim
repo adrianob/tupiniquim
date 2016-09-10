@@ -6,5 +6,10 @@
         - @order.errors.full_messages.each do |message|
           li = message
 
+  = f.simple_fields_for :order_details do |order_detail|
+    = render 'order_detail_fields', f: order_detail
+  .links
+    = link_to_add_association 'add order detail', f, :order_details
+
   = f.input :client_id, as: :hidden, input_html: {value: current_user.id}
   .actions = f.submit
