@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @manager.name
+p
+  strong Password:
+  = @manager.password
+p
+  strong Cpf:
+  = @manager.cpf
+
+= link_to 'Edit', edit_manager_path(@manager)
+'|
+= link_to 'Back', managers_path

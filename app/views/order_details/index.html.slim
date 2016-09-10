@@ -1,0 +1,27 @@
+h1 Listing order_details
+
+table
+  thead
+    tr
+      th Order
+      th Menu item
+      th Dessert
+      th Drink
+      th
+      th
+      th
+
+  tbody
+    - @order_details.each do |order_detail|
+      tr
+        td = order_detail.order
+        td = order_detail.menu_item
+        td = order_detail.dessert
+        td = order_detail.drink
+        td = link_to 'Show', order_detail
+        td = link_to 'Edit', edit_order_detail_path(order_detail)
+        td = link_to 'Destroy', order_detail, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Order detail', new_order_detail_path

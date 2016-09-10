@@ -1,0 +1,18 @@
+= form_for @cashier do |f|
+  - if @cashier.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@cashier.errors.count, "error")} prohibited this cashier from being saved:"
+      ul
+        - @cashier.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :password
+    = f.text_field :password
+  .field
+    = f.label :cpf
+    = f.text_field :cpf
+  .actions = f.submit

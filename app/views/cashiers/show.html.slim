@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @cashier.name
+p
+  strong Password:
+  = @cashier.password
+p
+  strong Cpf:
+  = @cashier.cpf
+
+= link_to 'Edit', edit_cashier_path(@cashier)
+'|
+= link_to 'Back', cashiers_path

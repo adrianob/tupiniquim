@@ -10,37 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906224329) do
+ActiveRecord::Schema.define(version: 20160910154806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "client_orders", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "menu_item_id"
-    t.integer  "dessert_id"
-    t.integer  "drink_id"
-    t.integer  "restaurant_table_id"
-    t.integer  "waiter_id",           null: false
-    t.text     "state"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.index ["dessert_id"], name: "index_client_orders_on_dessert_id", using: :btree
-    t.index ["drink_id"], name: "index_client_orders_on_drink_id", using: :btree
-    t.index ["menu_item_id"], name: "index_client_orders_on_menu_item_id", using: :btree
-    t.index ["restaurant_table_id"], name: "index_client_orders_on_restaurant_table_id", using: :btree
-    t.index ["user_id"], name: "index_client_orders_on_user_id", using: :btree
-    t.index ["waiter_id"], name: "index_client_orders_on_waiter_id", using: :btree
-  end
-
   create_table "desserts", force: :cascade do |t|
-    t.text     "description"
+    t.text     "description", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
   create_table "drinks", force: :cascade do |t|
-    t.text     "description"
+    t.text     "description", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -63,9 +45,27 @@ ActiveRecord::Schema.define(version: 20160906224329) do
     t.datetime "updated_at",                           null: false
   end
 
-  create_table "restaurant_tables", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "order_details", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "menu_item_id", null: false
+    t.integer  "dessert_id"
+    t.integer  "drink_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["dessert_id"], name: "index_order_details_on_dessert_id", using: :btree
+    t.index ["drink_id"], name: "index_order_details_on_drink_id", using: :btree
+    t.index ["menu_item_id"], name: "index_order_details_on_menu_item_id", using: :btree
+    t.index ["order_id"], name: "index_order_details_on_order_id", using: :btree
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "restaurant_table_id", null: false
+    t.integer  "waiter_id",           null: false
+    t.text     "state"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["restaurant_table_id"], name: "index_orders_on_restaurant_table_id", using: :btree
+    t.index ["waiter_id"], name: "index_orders_on_waiter_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Ambient grade:
+  = @feedback.ambient_grade
+p
+  strong Food grade:
+  = @feedback.food_grade
+p
+  strong Service grade:
+  = @feedback.service_grade
+
+= link_to 'Edit', edit_feedback_path(@feedback)
+'|
+= link_to 'Back', feedbacks_path

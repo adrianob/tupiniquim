@@ -1,0 +1,21 @@
+h1 Listing desserts
+
+table
+  thead
+    tr
+      th Description
+      th
+      th
+      th
+
+  tbody
+    - @desserts.each do |dessert|
+      tr
+        td = dessert.description
+        td = link_to 'Show', dessert
+        td = link_to 'Edit', edit_dessert_path(dessert)
+        td = link_to 'Destroy', dessert, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Dessert', new_dessert_path

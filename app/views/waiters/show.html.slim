@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @waiter.name
+p
+  strong Password:
+  = @waiter.password
+p
+  strong Cpf:
+  = @waiter.cpf
+
+= link_to 'Edit', edit_waiter_path(@waiter)
+'|
+= link_to 'Back', waiters_path

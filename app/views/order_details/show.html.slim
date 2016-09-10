@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Order:
+  = @order_detail.order
+p
+  strong Menu item:
+  = @order_detail.menu_item
+p
+  strong Dessert:
+  = @order_detail.dessert
+p
+  strong Drink:
+  = @order_detail.drink
+
+= link_to 'Edit', edit_order_detail_path(@order_detail)
+'|
+= link_to 'Back', order_details_path
