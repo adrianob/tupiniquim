@@ -9,6 +9,10 @@ class Order < ActiveRecord::Base
   delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
            to: :state_machine
 
+  def is_next?
+    self == Order.in_state(:created).order('created_at asc').first
+  end
+
   def self.transition_name
     :transitions
   end
