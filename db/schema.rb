@@ -72,9 +72,11 @@ ActiveRecord::Schema.define(version: 20160912153706) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "client_id",  null: false
+    t.integer  "waiter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_orders_on_client_id", using: :btree
+    t.index ["waiter_id"], name: "index_orders_on_waiter_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

@@ -64,6 +64,7 @@ class OrdersController < ApplicationController
 
   def update_state
     @order.transition_to @order.state_machine.allowed_transitions.first
+    @order.update_attribute(:waiter, current_user) if current_user.is_a? Waiter
     redirect_to orders_url, notice: 'Pedido atualizado com sucesso.'
   end
 

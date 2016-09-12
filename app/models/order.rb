@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
   include Statesman::Adapters::ActiveRecordQueries
   belongs_to :client
+  belongs_to :waiter, required: false
   has_many :order_details, inverse_of: :order, dependent: :destroy
   has_many :transitions, class_name: "OrderTransition", autosave: false
   has_many :order_transitions
