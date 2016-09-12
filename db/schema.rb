@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910172550) do
+ActiveRecord::Schema.define(version: 20160912153706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,9 +58,20 @@ ActiveRecord::Schema.define(version: 20160910172550) do
     t.index ["order_id"], name: "index_order_details_on_order_id", using: :btree
   end
 
+  create_table "order_transitions", force: :cascade do |t|
+    t.string   "to_state",                 null: false
+    t.json     "metadata",    default: {}
+    t.integer  "sort_key",                 null: false
+    t.integer  "order_id",                 null: false
+    t.boolean  "most_recent",              null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["order_id", "most_recent"], name: "index_order_transitions_parent_most_recent", unique: true, where: "most_recent", using: :btree
+    t.index ["order_id", "sort_key"], name: "index_order_transitions_parent_sort", unique: true, using: :btree
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer  "client_id",  null: false
-    t.text     "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_orders_on_client_id", using: :btree

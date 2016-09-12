@@ -66,7 +66,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # State machine for attributes on models
-gem 'state_machine', require: 'state_machine/core'
 gem 'statesman'
 
 # Frontend stuff
