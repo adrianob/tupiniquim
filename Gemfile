@@ -72,6 +72,7 @@ gem 'statesman'
 # Frontend stuff
 gem 'slim-rails'
 gem 'cocoon'
+gem 'bootstrap', '~> 4.0.0.alpha4'
 
 
 # Authentication and Authorization
