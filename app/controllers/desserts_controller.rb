@@ -4,6 +4,7 @@ class DessertsController < ApplicationController
   # GET /desserts
   # GET /desserts.json
   def index
+    authorize Dessert
     @desserts = Dessert.all
   end
 
@@ -15,16 +16,19 @@ class DessertsController < ApplicationController
   # GET /desserts/new
   def new
     @dessert = Dessert.new
+    authorize @dessert
   end
 
   # GET /desserts/1/edit
   def edit
+    authorize @dessert
   end
 
   # POST /desserts
   # POST /desserts.json
   def create
     @dessert = Dessert.new(dessert_params)
+    authorize @dessert
 
     respond_to do |format|
       if @dessert.save
@@ -40,6 +44,7 @@ class DessertsController < ApplicationController
   # PATCH/PUT /desserts/1
   # PATCH/PUT /desserts/1.json
   def update
+    authorize @dessert
     respond_to do |format|
       if @dessert.update(dessert_params)
         format.html { redirect_to @dessert, notice: 'Dessert was successfully updated.' }
@@ -54,6 +59,7 @@ class DessertsController < ApplicationController
   # DELETE /desserts/1
   # DELETE /desserts/1.json
   def destroy
+    authorize @dessert
     @dessert.destroy
     respond_to do |format|
       format.html { redirect_to desserts_url, notice: 'Dessert was successfully destroyed.' }

@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
       'Waiter': Waiter
     }[type_name.to_sym]
   end
+
+  def admin?
+    !self.is_a? Client
+  end
 end

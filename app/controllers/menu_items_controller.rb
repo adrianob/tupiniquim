@@ -10,21 +10,25 @@ class MenuItemsController < ApplicationController
   # GET /menu_items/1
   # GET /menu_items/1.json
   def show
+    authorize @menu_item
   end
 
   # GET /menu_items/new
   def new
     @menu_item = MenuItem.new
+    authorize @menu_item
   end
 
   # GET /menu_items/1/edit
   def edit
+    authorize @menu_item
   end
 
   # POST /menu_items
   # POST /menu_items.json
   def create
     @menu_item = MenuItem.new(menu_item_params)
+    authorize @menu_item
 
     respond_to do |format|
       if @menu_item.save
@@ -40,6 +44,7 @@ class MenuItemsController < ApplicationController
   # PATCH/PUT /menu_items/1
   # PATCH/PUT /menu_items/1.json
   def update
+    authorize @menu_item
     respond_to do |format|
       if @menu_item.update(menu_item_params)
         format.html { redirect_to @menu_item, notice: 'Menu item was successfully updated.' }
@@ -54,6 +59,7 @@ class MenuItemsController < ApplicationController
   # DELETE /menu_items/1
   # DELETE /menu_items/1.json
   def destroy
+    authorize @menu_item
     @menu_item.destroy
     respond_to do |format|
       format.html { redirect_to menu_items_url, notice: 'Menu item was successfully destroyed.' }

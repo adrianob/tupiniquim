@@ -1,0 +1,2 @@
+class DessertPolicy < ApplicationPolicy
+end

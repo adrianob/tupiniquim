@@ -10,21 +10,25 @@ class DrinksController < ApplicationController
   # GET /drinks/1
   # GET /drinks/1.json
   def show
+    authorize @drink
   end
 
   # GET /drinks/new
   def new
     @drink = Drink.new
+    authorize @drink
   end
 
   # GET /drinks/1/edit
   def edit
+    authorize @drink
   end
 
   # POST /drinks
   # POST /drinks.json
   def create
     @drink = Drink.new(drink_params)
+    authorize @drink
 
     respond_to do |format|
       if @drink.save
@@ -40,6 +44,7 @@ class DrinksController < ApplicationController
   # PATCH/PUT /drinks/1
   # PATCH/PUT /drinks/1.json
   def update
+    authorize @drink
     respond_to do |format|
       if @drink.update(drink_params)
         format.html { redirect_to @drink, notice: 'Drink was successfully updated.' }
@@ -54,6 +59,7 @@ class DrinksController < ApplicationController
   # DELETE /drinks/1
   # DELETE /drinks/1.json
   def destroy
+    authorize @drink
     @drink.destroy
     respond_to do |format|
       format.html { redirect_to drinks_url, notice: 'Drink was successfully destroyed.' }

@@ -1,0 +1,2 @@
+class DrinkPolicy < ApplicationPolicy
+end

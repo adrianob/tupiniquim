@@ -4,28 +4,33 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
+    authorize Order
     @orders = Order.in_state(current_user.viewable_state).order('created_at asc')
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
+    authorize @order
   end
 
   # GET /orders/new
   def new
     @order = Order.new
     @order.order_details.build
+    authorize @order
   end
 
   # GET /orders/1/edit
   def edit
+    authorize @order
   end
 
   # POST /orders
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    authorize @order
 
     respond_to do |format|
       if @order.save
@@ -41,6 +46,7 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+    authorize @order
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
@@ -55,6 +61,7 @@ class OrdersController < ApplicationController
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
+    authorize @order
     @order.destroy
     respond_to do |format|
       format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
