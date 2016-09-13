@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   end
 
 
-  root to: "orders#new"
+  root to: "orders#index"
 end

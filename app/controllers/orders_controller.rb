@@ -4,8 +4,16 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    authorize Order
-    @orders = Order.in_state(current_user.viewable_state).order('created_at asc')
+    if !policy(Order).index?
+      current_order = current_user.orders.not_in_state(:paid).last
+      if current_order
+        redirect_to order_path(current_order)
+      else
+        redirect_to new_order_path
+      end
+    else
+      @orders = Order.in_state(current_user.viewable_state).order('created_at asc')
+    end
   end
 
   # GET /orders/1
