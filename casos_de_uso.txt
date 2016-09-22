@@ -1,14 +1,113 @@
-usuário:
-
 Identificação: UC1
 Caso de Uso: Cliente faz um pedido
 Ator: Cliente
-Pré‐Condições: mesa está liberada
+Pré‐Condições: cliente logado e mesa está liberada
 Pós‐Condições: pedido está com estado criado
 Sequência Típica de Eventos:
 Ação do ator
 1. Cliente escolhe os items no tablet, escolhendo a bebida e sobremesa para cada item(opcional)
 2. Após terminar o pedido clica em confirmar para fechar o pedido
 Resposta do sistema
-1. Pedido é criado com o id da mesa do cliente
+1. Pedido é criado com o id da mesa do cliente(estado created)
 2. Pedido aparece para o gerente da cozinha
+
+Identificação: UC2
+Caso de Uso: Gerente recebe um pedido
+Ator: Gerente
+Pré‐Condições: gerente logado e existe um pedido criado no sistema
+Pós‐Condições: pedido fica como pronto(estado ready)
+Sequência Típica de Eventos:
+Ação do ator
+1. Gerente recebe um pedido novo na sua listagem de pedidos
+2. Quando o pedido estiver pronto, muda o estado do pedido para ready
+Resposta do sistema
+1. O estado do pedido muda para ready e desaparece da lista de pedidos do gerente
+2. O pedido fica disponível na listagem de pedidos do garçom
+
+Identificação: UC3
+Caso de Uso: Garçom recebe um pedido
+Ator: Garçom
+Pré‐Condições: garçom logado e existe um pedido como pronto no sistema
+Pós‐Condições: pedido fica como entregue(estado delivered)
+Sequência Típica de Eventos:
+Ação do ator
+1. Garçom recebe um pedido novo na sua listagem de pedidos
+2. Quando o pedido estiver entregue, muda o estado do pedido para delivered
+Resposta do sistema
+1. O estado do pedido muda para delivered e desaparece da lista de pedidos do garçom
+2. O pedido fica disponível na listagem de pedidos do caixa
+3. O garçom fica atrelado ao pedido
+4. Sistema libera feedback para o cliente
+
+Identificação: UC4
+Caso de Uso: Cliente deixa um feedback opcional
+Ator: Cliente
+Pré‐Condições: cliente logado e pedido foi entregue
+Pós‐Condições: feedback fica registrado no sistema
+Sequência Típica de Eventos:
+Ação do ator
+1. Cliente deixa um feedback com notas para cada item e um texto opcional
+Resposta do sistema
+1. Feedback fica salvo para consultas posteriores
+
+Identificação: UC5
+Caso de Uso: Caixa recebe um pedido
+Ator: Caixa
+Pré‐Condições: caixa logado e existe um pedido como pronto no sistema
+Pós‐Condições: pedido fica como entregue(estado delivered)
+Sequência Típica de Eventos:
+Ação do ator
+1. Garçom recebe um pedido novo na sua listagem de pedidos
+2. Quando o pedido estiver entregue, muda o estado do pedido para delivered
+Resposta do sistema
+1. O estado do pedido muda para delivered e desaparece da lista de pedidos do garçom
+2. O pedido fica disponível na listagem de pedidos do caixa
+
+Identificação: UC6
+Caso de Uso: Caixa pesquisa por um CPF
+Ator: Caixa
+Pré‐Condições: caixa logado
+Pós‐Condições: exibe pedidos com o CPF pesquisado, se existir
+Sequência Típica de Eventos:
+Ação do ator
+1. Caixa pesquisa por um CPF
+Resposta do sistema
+1. Pesquisa no banco de dados pedidos abertos com o CPF dado
+2. Exibe pedidos
+
+Identificação: UC7
+Caso de Uso: Caixa pede um relatório diário
+Ator: Caixa
+Pré‐Condições: caixa logado
+Pós‐Condições: relatório gerado
+Sequência Típica de Eventos:
+Ação do ator
+1. Caixa solicita um relatório
+Resposta do sistema
+1. Calcula o valor total dos pedidos feitos no dia
+2. Exibe valor
+
+Identificação: UC8
+Caso de Uso: Caixa pede um relatório de pedidos diário
+Ator: Caixa
+Pré‐Condições: caixa logado
+Pós‐Condições: relatório gerado
+Sequência Típica de Eventos:
+Ação do ator
+1. Caixa solicita um relatório de pedidos
+Resposta do sistema
+1. Calcula quantidade de cada pedido feito no dia
+2. Exibe as quantidades para cada pedido
+
+
+Identificação: UC9
+Caso de Uso: Caixa pede um ranking dos garçons
+Ator: Caixa
+Pré‐Condições: caixa logado
+Pós‐Condições: relatório gerado
+Sequência Típica de Eventos:
+Ação do ator
+1. Caixa solicita um ranking dos garçons
+Resposta do sistema
+1. Calcula quantidade de pedidos atentidos por cada garçon no dia
+2. Exibe as quantidades para cada garçon
