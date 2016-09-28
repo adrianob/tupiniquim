@@ -51,17 +51,17 @@ Resposta do sistema
 1. Feedback fica salvo para consultas posteriores
 
 Identificação: UC5
-Caso de Uso: Caixa recebe um pedido
-Ator: Caixa
-Pré‐Condições: caixa logado e existe um pedido como pronto no sistema
-Pós‐Condições: pedido fica como entregue(estado delivered)
+Caso de Uso: Caixa finaliza um pedido
+Ator: Caixa, Cliente
+Pré‐Condições: caixa logado e existe um pedido como entregue no sistema
+Pós‐Condições: pedido fica como finalizado(estado paid)
 Sequência Típica de Eventos:
 Ação do ator
-1. Garçom recebe um pedido novo na sua listagem de pedidos
-2. Quando o pedido estiver entregue, muda o estado do pedido para delivered
+1. Caixa recebe um pedido novo na sua listagem de pedidos
+2. Cliente paga o pedido
+3. Quando o pedido estiver pago, muda o estado do pedido para paid
 Resposta do sistema
-1. O estado do pedido muda para delivered e desaparece da lista de pedidos do garçom
-2. O pedido fica disponível na listagem de pedidos do caixa
+1. O estado do pedido muda para paid
 
 Identificação: UC6
 Caso de Uso: Caixa pesquisa por um CPF
@@ -98,7 +98,6 @@ Ação do ator
 Resposta do sistema
 1. Calcula quantidade de cada pedido feito no dia
 2. Exibe as quantidades para cada pedido
-
 
 Identificação: UC9
 Caso de Uso: Caixa pede um ranking dos garçons
