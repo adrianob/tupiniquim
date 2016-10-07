@@ -4,7 +4,6 @@ table.table
   thead
     tr
       th Client
-      th State
       th Horário
       th
       th
@@ -15,10 +14,7 @@ table.table
     - @orders.each do |order|
       tr
         td = order.client.name
-        td = order.current_state
         td = order.created_at
-        td = link_to update_state_order_path(order), class:"btn btn-info btn", method: :put do
-               span.glyphicon.glyphicon-ok Ok
         td = link_to 'Show', order
         td = link_to 'Edit', edit_order_path(order)
         td = link_to 'Destroy', order, data: { confirm: 'Are you sure?' }, method: :delete

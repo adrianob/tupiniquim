@@ -1,19 +1,10 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy, :update_state]
+  before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   # GET /orders
   # GET /orders.json
   def index
-    if !policy(Order).index?
-      current_order = current_user.orders.not_in_state(:paid).last
-      if current_order
-        redirect_to order_path(current_order)
-      else
-        redirect_to new_order_path
-      end
-    else
-      @orders = Order.in_state(current_user.viewable_state).order('created_at asc')
-    end
+    @orders = Order.all
   end
 
   # GET /orders/1
@@ -75,12 +66,6 @@ class OrdersController < ApplicationController
       format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def update_state
-    @order.transition_to @order.state_machine.allowed_transitions.first
-    @order.update_attribute(:waiter, current_user) if current_user.is_a? Waiter
-    redirect_to orders_url, notice: 'Pedido atualizado com sucesso.'
   end
 
   private

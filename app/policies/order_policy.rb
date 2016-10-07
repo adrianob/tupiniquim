@@ -1,13 +1,18 @@
 class OrderPolicy < ApplicationPolicy
   def new?
-    user.is_a? Client
+    update? && !user.order_details.not_in_state(:paid).present?
   end
 
   def update?
-    new?
+    user.is_a? Client
   end
 
   def create?
     new?
   end
+
+  def destroy?
+    user.admin?
+  end
+
 end

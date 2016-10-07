@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(version: 20160912153706) do
     t.datetime "updated_at",                           null: false
   end
 
+  create_table "order_detail_transitions", force: :cascade do |t|
+    t.string   "to_state",                     null: false
+    t.json     "metadata",        default: {}
+    t.integer  "sort_key",                     null: false
+    t.integer  "order_detail_id",              null: false
+    t.boolean  "most_recent",                  null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["order_detail_id", "most_recent"], name: "index_order_detail_transitions_parent_most_recent", unique: true, where: "most_recent", using: :btree
+    t.index ["order_detail_id", "sort_key"], name: "index_order_detail_transitions_parent_sort", unique: true, using: :btree
+  end
+
   create_table "order_details", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "menu_item_id", null: false
@@ -56,18 +68,6 @@ ActiveRecord::Schema.define(version: 20160912153706) do
     t.index ["drink_id"], name: "index_order_details_on_drink_id", using: :btree
     t.index ["menu_item_id"], name: "index_order_details_on_menu_item_id", using: :btree
     t.index ["order_id"], name: "index_order_details_on_order_id", using: :btree
-  end
-
-  create_table "order_transitions", force: :cascade do |t|
-    t.string   "to_state",                 null: false
-    t.json     "metadata",    default: {}
-    t.integer  "sort_key",                 null: false
-    t.integer  "order_id",                 null: false
-    t.boolean  "most_recent",              null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.index ["order_id", "most_recent"], name: "index_order_transitions_parent_most_recent", unique: true, where: "most_recent", using: :btree
-    t.index ["order_id", "sort_key"], name: "index_order_transitions_parent_sort", unique: true, using: :btree
   end
 
   create_table "orders", force: :cascade do |t|

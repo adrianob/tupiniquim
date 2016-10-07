@@ -1,10 +1,10 @@
 class OrderDetailsController < ApplicationController
-  before_action :set_order_detail, only: [:show, :edit, :update, :destroy]
+  before_action :set_order_detail, only: [:show, :edit, :update, :destroy, :update_state]
 
   # GET /order_details
   # GET /order_details.json
   def index
-    @order_details = OrderDetail.all
+    @order_details = policy_scope(OrderDetail)
   end
 
   # GET /order_details/1
@@ -59,6 +59,13 @@ class OrderDetailsController < ApplicationController
       format.html { redirect_to order_details_url, notice: 'Order detail was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def update_state
+    authorize @order_detail
+    @order_detail.transition_to @order_detail.state_machine.allowed_transitions.first
+    @order_detail.order.update_attribute(:waiter, current_user) if current_user.is_a? Waiter
+    redirect_to order_details_url, notice: 'Pedido atualizado com sucesso.'
   end
 
   private

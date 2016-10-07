@@ -1,27 +1,28 @@
-h1 Listing order_details
+h1 Detalhes do pedido
 
 table
   thead
     tr
-      th Order
       th Menu item
       th Dessert
       th Drink
-      th
+      th Estado
       th
       th
 
   tbody
     - @order_details.each do |order_detail|
       tr
-        td = order_detail.order
-        td = order_detail.menu_item
-        td = order_detail.dessert
-        td = order_detail.drink
-        td = link_to 'Show', order_detail
-        td = link_to 'Edit', edit_order_detail_path(order_detail)
+        td = order_detail.menu_item.description
+        td = order_detail.dessert.description
+        td = order_detail.drink.description
+        td = order_detail.current_state
+        - if policy(order_detail).update_state?
+          td = link_to update_state_order_detail_path(order_detail), class:"btn btn-info btn", method: :put do
+                 span.glyphicon.glyphicon-ok Ok
         td = link_to 'Destroy', order_detail, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 
-= link_to 'New Order detail', new_order_detail_path
+- if policy(Order).new?
+  = link_to 'Adicionar item', edit_order_path(@order_details.last.order)

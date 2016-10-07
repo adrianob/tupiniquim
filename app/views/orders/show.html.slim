@@ -3,9 +3,6 @@ p#notice = notice
 p
   strong Client:
   = @order.client.name
-p
-  strong State:
-  = @order.current_state
 
 = link_to 'Edit', edit_order_path(@order)
 '|
