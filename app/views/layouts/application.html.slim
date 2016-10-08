@@ -1,20 +1,31 @@
 doctype html
-html
+html 
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     title Tupiniquim
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    meta content="width=device-width, initial-scale=1" name="viewport" /
   body
-    ul.hmenu
-      - if user_signed_in?
-        li
-          = link_to('Logout', destroy_user_session_path, :method => :delete)
-      - else
-        li
-          = link_to('Login', new_user_session_path)
-    p.notice= notice
-    p.alert= alert
-    .container
-      = yield
+    .navigation-bar.w-nav data-animation="default" data-collapse="medium" data-contain="1" data-duration="400" 
+      .w-container
+        = link_to root_url, class: 'brand-link w-nav-brand' do
+          h1.brand-text TUPINIQUIM
+        nav.navigation-menu.w-nav-menu role="navigation" 
+          = link_to 'Novo pedido', new_order_path, class: 'navigation-link w-nav-link'
+          = link_to 'Feedback', new_feedback_path, class: 'navigation-link w-nav-link'
+          - if user_signed_in?
+              = link_to'Logout', destroy_user_session_path, :method => :delete, class: 'navigation-link w-nav-link'
+          - else
+              = link_to'Login', new_user_session_path, class: 'navigation-link w-nav-link'
+        .hamburger-button.w-nav-button
+          .w-icon-nav-menu
+    .section
+      .w-container
+        p.notice= notice
+        p.alert= alert
+        = yield
+    .center.footer
+      .w-container
+        .footer-text Copyright Tupiniquim

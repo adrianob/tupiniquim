@@ -1,28 +1,19 @@
-h1 Detalhes do pedido
-
-table
-  thead
-    tr
-      th Menu item
-      th Dessert
-      th Drink
-      th Estado
-      th
-      th
-
-  tbody
-    - @order_details.each do |order_detail|
-      tr
-        td = order_detail.menu_item.description
-        td = order_detail.dessert.description
-        td = order_detail.drink.description
-        td = order_detail.current_state
+.section-title-group
+  h2.centered.section-heading Detalhes do pedido
+  .center.section-subheading Acompanhe o andamentos dos seus pedidos
+.w-row
+  - @order_details.each do |order_detail|
+    .w-col.w-col-4
+      .white-box
+        = image_tag 'Fast-food.jpg'
+        h3= order_detail.menu_item.description
+        p= "Sobremesa: #{order_detail.dessert.description}"
+        p= "Bebida: #{order_detail.drink.description}"
+        p= "Status: #{order_detail.current_state}"
         - if policy(order_detail).update_state?
-          td = link_to update_state_order_detail_path(order_detail), class:"btn btn-info btn", method: :put do
-                 span.glyphicon.glyphicon-ok Ok
-        td = link_to 'Destroy', order_detail, data: { confirm: 'Are you sure?' }, method: :delete
+          = link_to update_state_order_detail_path(order_detail), class:"btn btn-info btn", method: :put do
+            span.glyphicon.glyphicon-ok Ok
 
-br
-
-- if policy(Order).new?
-  = link_to 'Adicionar item', edit_order_path(@order_details.last.order)
+- if policy(Order).update?
+  = link_to edit_order_path(@order_details.last.order) do
+    span.glyphicon.glyphicon-ok Adicionar Item +

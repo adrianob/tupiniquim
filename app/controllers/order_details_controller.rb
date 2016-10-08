@@ -5,6 +5,9 @@ class OrderDetailsController < ApplicationController
   # GET /order_details.json
   def index
     @order_details = policy_scope(OrderDetail)
+    if @order_details.empty?
+      redirect_to new_order_path
+    end
   end
 
   # GET /order_details/1
