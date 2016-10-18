@@ -7,6 +7,10 @@ class OrderPolicy < ApplicationPolicy
     user.is_a? Client
   end
 
+  def edit?
+    update?
+  end
+
   def create?
     new?
   end

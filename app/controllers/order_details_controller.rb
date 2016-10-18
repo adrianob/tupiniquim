@@ -5,7 +5,7 @@ class OrderDetailsController < ApplicationController
   # GET /order_details.json
   def index
     @order_details = policy_scope(OrderDetail)
-    if @order_details.empty?
+    if @order_details.empty? && policy(OrderDetail).new?
       redirect_to new_order_path
     end
   end
