@@ -1,6 +1,9 @@
-.nested-fields
-  = f.association :menu_item, label_method: :description
-  = f.association :dessert, label_method: :description
-  = f.association :drink, label_method: :description
-  = link_to_remove_association "remove order detail", f
+.nested-fields.white-box
+  |Escolha seu pedido:
+  = f.association:menu_item, label_method: :description, as: :radio_buttons, label: '', item_wrapper_class: 'radio-item'
+  |Escolha sua sobremesa:
+  = f.association :dessert, label_method: :description, as: :radio_buttons, label: '', item_wrapper_class: 'radio-item'
+  |Escolha sua bebida:
+  = f.association :drink, label_method: :description, as: :radio_buttons, label: '', item_wrapper_class: 'radio-item'
+  = link_to_remove_association "excluir item", f
 
