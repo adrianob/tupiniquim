@@ -12,4 +12,8 @@ class OrderDetailPolicy < ApplicationPolicy
   def update_state?
     user.admin?
   end
+
+  def new?
+    user.is_a? Client
+  end
 end
