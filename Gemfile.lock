@@ -147,6 +147,7 @@ GEM
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
+    railroady (1.5.2)
     rails (5.0.0.1)
       actioncable (= 5.0.0.1)
       actionmailer (= 5.0.0.1)
@@ -291,6 +292,7 @@ DEPENDENCIES
   pry
   puma (~> 3.0)
   pundit
+  railroady
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-assets-tether (>= 1.1.0)!
   rspec-collection_matchers
@@ -315,4 +317,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.5
+   1.13.6
