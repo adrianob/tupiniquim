@@ -10,7 +10,11 @@ class OrderDetailPolicy < ApplicationPolicy
   end
 
   def update_state?
-    user.admin?
+    if @record.current_state == 'created'
+      @record.is_next? && user.admin?
+    else
+      user.admin?
+    end
   end
 
   def new?
