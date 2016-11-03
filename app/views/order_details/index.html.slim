@@ -7,11 +7,14 @@
       .white-box
         = image_tag 'Fast-food.jpg'
         h3= order_detail.menu_item.description
+        -if policy(order_detail).update_state?
+          = "Mesa: #{order_detail.order.client.name}"
+          br
         = "Sobremesa: #{order_detail.dessert.description}"
         br
         = "Bebida: #{order_detail.drink.description}"
         br
-        => "Status: #{order_detail.current_state}"
+        => "Status: #{order_detail.show_current_state}"
         - if policy(order_detail).update_state?
           = link_to update_state_order_detail_path(order_detail), class:"btn btn-info", method: :put do
             span.glyphicon.glyphicon-ok Ok

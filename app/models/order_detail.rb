@@ -31,6 +31,11 @@ class OrderDetail < ActiveRecord::Base
   end
   private_class_method :initial_state
 
+  #TODO move to i18n
+  def show_current_state
+    {created: 'criado', ready: 'pronto', delivered: 'entregue', paid: 'pago'}[current_state.to_sym]
+  end
+
   def is_next?
     self == OrderDetail.in_state(:created).order('created_at asc').first
   end
