@@ -4,6 +4,7 @@ class WaitersController < ApplicationController
   # GET /waiters
   # GET /waiters.json
   def index
+    authorize Waiter
     @waiters = Waiter.all
   end
 

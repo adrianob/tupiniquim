@@ -1,11 +1,12 @@
 h1 Listing waiters
 
-table
+table.table
   thead
     tr
       th Name
       th Password
       th Cpf
+      th Pedidos
       th
       th
       th
@@ -16,6 +17,7 @@ table
         td = waiter.name
         td = waiter.password
         td = waiter.cpf
+        td = waiter.orders_last_month
         td = link_to 'Show', waiter
         td = link_to 'Edit', edit_waiter_path(waiter)
         td = link_to 'Destroy', waiter, data: { confirm: 'Are you sure?' }, method: :delete
