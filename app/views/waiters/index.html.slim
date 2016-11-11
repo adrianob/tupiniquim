@@ -4,9 +4,7 @@ table.table
   thead
     tr
       th Name
-      th Password
-      th Cpf
-      th Pedidos
+      th Pedidos último mês
       th
       th
       th
@@ -15,8 +13,6 @@ table.table
     - @waiters.each do |waiter|
       tr
         td = waiter.name
-        td = waiter.password
-        td = waiter.cpf
         td = waiter.orders_last_month
         td = link_to 'Show', waiter
         td = link_to 'Edit', edit_waiter_path(waiter)
