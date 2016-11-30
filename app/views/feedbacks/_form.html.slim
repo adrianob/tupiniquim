@@ -8,11 +8,11 @@
 
   = f.input :client_id, as: :hidden, input_html: {value: current_user.id}
   .field
-    = f.input :details
+    = f.input :details, label: 'Detalhes'
   .field
-    = f.input :ambient_grade
+    = f.input :ambient_grade, label: 'Nota ambiente'
   .field
-    = f.input :food_grade
+    = f.input :food_grade, label: 'Nota comida'
   .field
-    = f.input :service_grade
+    = f.input :service_grade, label: 'Nota atendimento'
   .actions = f.submit

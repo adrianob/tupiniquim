@@ -5,4 +5,12 @@ class Order < ActiveRecord::Base
 
   accepts_nested_attributes_for :order_details, allow_destroy: true
 
+  def day
+    self.created_at.to_date
+  end
+
+  def total
+    order_details.sum(&:total)
+  end
+
 end

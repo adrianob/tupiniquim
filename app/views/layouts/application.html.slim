@@ -13,12 +13,15 @@ html
         = link_to root_url, class: 'brand-link w-nav-brand' do
           h1.brand-text TUPINIQUIM
         nav.navigation-menu.w-nav-menu role="navigation" 
-          - if current_user
-            .navigation-link.w-nav-link= "Olá, #{current_user.name}"
           - if policy(Order).new?
             = link_to 'Novo pedido', new_order_path, class: 'navigation-link w-nav-link'
           = link_to 'Feedback', new_feedback_path, class: 'navigation-link w-nav-link'
           - if user_signed_in?
+              - if current_user.is_a? Cashier
+                = link_to 'Mesas', clients_path, class: 'navigation-link w-nav-link'
+                = link_to 'Garçom do mês', waiters_path, class: 'navigation-link w-nav-link'
+                = link_to 'Relatórios', reports_path, class: 'navigation-link w-nav-link'
+              .navigation-link.w-nav-link= "Olá, #{current_user.name}"
               = link_to'Logout', destroy_user_session_path, :method => :delete, class: 'navigation-link w-nav-link'
           - else
               = link_to'Login', new_user_session_path, class: 'navigation-link w-nav-link'

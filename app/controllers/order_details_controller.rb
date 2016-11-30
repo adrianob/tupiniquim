@@ -4,7 +4,7 @@ class OrderDetailsController < ApplicationController
   # GET /order_details
   # GET /order_details.json
   def index
-    @order_details = policy_scope(OrderDetail)
+    @order_details = policy_scope(OrderDetail).order(:created_at)
     if @order_details.empty? && policy(OrderDetail).new?
       redirect_to new_order_path
     end

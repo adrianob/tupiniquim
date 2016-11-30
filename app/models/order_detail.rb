@@ -10,6 +10,11 @@ class OrderDetail < ActiveRecord::Base
 
   delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
            to: :state_machine
+  scope :created_last_day, -> { where('created_at between ? and ?', Time.now - 1.day, Time.now) }
+
+  def total
+    menu_item.price
+  end
 
   def self.transition_name
     :transitions

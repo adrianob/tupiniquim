@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   end
 
   root to: "order_details#index"
+  match '/reports' => 'reports#show', :via => 'get'
 end

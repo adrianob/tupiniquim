@@ -1,4 +1,4 @@
-h1 Listing waiters
+h1 Garçons
 
 table.table
   thead
@@ -6,18 +6,11 @@ table.table
       th Name
       th Pedidos último mês
       th
-      th
-      th
 
   tbody
     - @waiters.each do |waiter|
       tr
         td = waiter.name
         td = waiter.orders_last_month
-        td = link_to 'Show', waiter
-        td = link_to 'Edit', edit_waiter_path(waiter)
-        td = link_to 'Destroy', waiter, data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to 'Detalhes', waiter
 
-br
-
-= link_to 'New Waiter', new_waiter_path
