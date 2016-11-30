@@ -1,0 +1,26 @@
+h1 Relatório diário
+
+table.table
+  thead
+    tr
+      th Dia
+      th Total
+
+  tbody
+    - @orders.each do |day, orders|
+      tr
+        td = day
+        td = number_to_currency(orders.inject(0) {|n, order| order.total + n})
+h1 Pedidos no último dia
+
+table.table
+  thead
+    tr
+      th Item
+      th Total
+
+  tbody
+    - @order_details.each do |menu_item, order_details|
+      tr
+        td = menu_item.description
+        td = order_details.count
