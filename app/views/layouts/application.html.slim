@@ -15,7 +15,10 @@ html
         nav.navigation-menu.w-nav-menu role="navigation" 
           - if policy(Order).new?
             = link_to 'Novo pedido', new_order_path, class: 'navigation-link w-nav-link'
-          = link_to 'Feedback', new_feedback_path, class: 'navigation-link w-nav-link'
+          - if current_user.is_a? Client
+            = link_to 'Feedback', new_feedback_path, class: 'navigation-link w-nav-link'
+          - else
+            = link_to 'Feedback', feedbacks_path, class: 'navigation-link w-nav-link'
           - if user_signed_in?
               - if current_user.is_a? Cashier
                 = link_to 'Mesas', clients_path, class: 'navigation-link w-nav-link'

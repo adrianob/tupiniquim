@@ -1,12 +1,12 @@
-h1 Listing feedbacks
+h1 Feedbacks
 
-table
+table.table
   thead
     tr
-      th Details
-      th Ambient grade
-      th Food grade
-      th Service grade
+      th Detalhes
+      th Ambiente
+      th Comida
+      th Serviço
       th
       th
       th
@@ -19,9 +19,4 @@ table
         td = feedback.food_grade
         td = feedback.service_grade
         td = link_to 'Show', feedback
-        td = link_to 'Edit', edit_feedback_path(feedback)
         td = link_to 'Destroy', feedback, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Feedback', new_feedback_path
